@@ -5,18 +5,21 @@
   "author": "HeyDev (workspace.armenia@gmail.com)",
   "license": "",
   "main": "node_modules/expo/AppEntry.js",
-  "scripts": {
-
-  },
+  "scripts": {},
   "jest": {
     "preset": "jest-expo"
   },
   "dependencies": {
     "@expo/samples": "^2.0.2",
+    "apollo-client": "^1.9.3",
     "expo": "^21.0.0",
+    "graphql-tag": "^2.4.2",
     "react": "16.0.0-alpha.12",
+    "react-apollo": "^1.4.16",
     "react-native": "https://github.com/expo/react-native/archive/sdk-21.0.2.tar.gz",
-    "react-navigation": "^1.0.0-beta.12"
+    "react-navigation": "^1.0.0-beta.12",
+    "react-redux": "^5.0.6",
+    "redux": "^3.7.2"
   },
   "devDependencies": {
     "jest-expo": "^21.0.0"
