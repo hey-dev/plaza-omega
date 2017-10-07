@@ -18,16 +18,16 @@ export default TabNavigator(
     Home: {
       screen: EstablishmentListScreen,
     },
+    Search: {
+      screen: SearchScreen,
+    },
     Account: {
       screen: TabNavigator({
         Profile: { screen: AccountProfileScreen },
         Locations: { screen: AccountLocationsScreen },
         Payments: { screen: AccountPaymentMethodsScreen }
       })
-    },
-    Search: {
-      screen: SearchScreen,
-    },
+    },    
     Cart: {
       screen: TabNavigator(
         {

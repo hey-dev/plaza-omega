@@ -7,12 +7,15 @@ import RootNavigation from "./navigation/RootNavigation";
 import ApolloClient, { createNetworkInterface } from "apollo-client";
 import { ApolloProvider } from "react-apollo";
 
+// use your own IP when developing
 const networkInterface = createNetworkInterface({
-  uri: "http://localhost:8000/graphql"
+  uri: "http://192.168.1.57:8000/graphql", // USE your IP
+  opts: {
+    credentials: 'same-origin'
+  }
 });
 
-const client = new ApolloClient({
-  dataIdFromObject: obj => obj.id, // tell apollo to identify each record
+const client = new ApolloClient({  
   networkInterface
 });
 
