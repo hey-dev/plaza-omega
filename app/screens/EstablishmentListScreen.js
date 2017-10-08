@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { graphql } from 'react-apollo';
 import {
   StyleSheet,
@@ -6,27 +6,49 @@ import {
 	View,
 	FlatList
 } from 'react-native';
-import EstablishmentRow from '../components/EstablishmentRow';
+import { List, ListItem } from 'react-native-elements';
 import query from '../queries/fetchEstablishments';
 
-class EstablishmentListScreen extends React.Component {
+class EstablishmentListScreen extends Component {
   static navigationOptions = {
 		title: 'mi ubicacion',
 		tabBarLabel: 'Establecimientos'
+	};
+
+	_renderSeparator = () => {
+		return (
+			<View
+				style={{
+					height: 1,
+					width: '100%',
+					backgroundColor: '#CED0CE',
+					//marginLeft: '14%'
+				}}
+			/>
+		);
 	};
 	
   render() {
 		if (this.props.data.loading) {
 			return <Text>loading...</Text>
 		}
-		console.log(this.props)
+		console.log(this.props);
+
     return (
-      <View onPress={this.navigate} style={styles.container}>
+      <List containerStyle={{ borderTopWidth: 0, borderBottomWidth: 0 }} >
 				<FlatList 
 					data={this.props.data.establishments}
-					renderItem={({ item }) => <EstablishmentRow key={item} establishment={item} />}
+					renderItem={({ item }) => (
+						<ListItem
+							title={item.name}
+							avatar={{ uri: 'http://lorempixel.com/50/50/food' }}
+							containerStyle={{ borderBottomWidth: 0 }}
+						/>
+					)}
+					keyExtractor={item => item.id}
+					ItemSeparatorComponent={this._renderSeparator}
 				/>
-      </View>
+      </List>
     );
   }
 }
