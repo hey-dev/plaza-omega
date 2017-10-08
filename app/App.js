@@ -7,6 +7,8 @@ import RootNavigation from "./navigation/RootNavigation";
 import ApolloClient, { createNetworkInterface } from "apollo-client";
 import { ApolloProvider } from "react-apollo";
 
+import createStore from './redux';
+
 // use your own IP when developing
 const networkInterface = createNetworkInterface({
   uri: "http://192.168.1.57:8000/graphql", // USE your IP
@@ -15,25 +17,11 @@ const networkInterface = createNetworkInterface({
   }
 });
 
-const client = new ApolloClient({  
+const client = new ApolloClient({
   networkInterface
 });
 
-// import me
-import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
-
-const store = createStore(
-  combineReducers({
-    apollo: client.reducer()
-  }),
-  {}, // initial state
-  compose(
-    applyMiddleware(client.middleware()),
-    // If you are using the devToolsExtension, you can add it here also
-    (typeof window.__REDUX_DEVTOOLS_EXTENSION__ !== 'undefined') ? window.__REDUX_DEVTOOLS_EXTENSION__() : f => f,
-  )
-);
-
+const store = createStore(client);
 
 export default class App extends React.Component {
   state = {
