@@ -41,8 +41,9 @@ class EstablishmentListScreen extends Component {
 					renderItem={({ item }) => (
 						<ListItem
 							title={item.name}
+							subtitle={'categories'}
 							avatar={{ uri: 'http://lorempixel.com/50/50/food' }}
-							containerStyle={{ borderBottomWidth: 0 }}
+							containerStyle={{ borderBottomWidth: 0 }}							
 						/>
 					)}
 					keyExtractor={item => item.id}
