@@ -1,9 +1,10 @@
 import React from 'react';
+import { graphql } from 'react-apollo';
 import { StyleSheet, Text, View, Image } from 'react-native';
-import { Card } from 'react-native-elements';
+import fetchEstablishment from '../queries/fetchEstablishment';
 import Layout from '../constants/Layout';
 
-export default class EstablishmentDetailScreen extends React.Component {
+class EstablishmentDetailScreen extends React.Component {
   static navigationOptions = {
 		tabBarVisible: false,
 		headerStyle: {
@@ -19,13 +20,21 @@ export default class EstablishmentDetailScreen extends React.Component {
   };
 
   render() {
-    const { params } = this.props.navigation.state;
+		const { params } = this.props.navigation.state;
+		const { establishment } = this.props.data;
+		
+		if (!establishment) {
+			return (
+				<Text>loading...</Text>
+			)
+		}
     return (
       <View>
 				<Image
 					style={{ width: Layout.window.width, height: 192 }} 
 					source={{uri: 'http://lorempixel.com/342/192/food/'}} 
 				/> 
+				<Text>{establishment.name}</Text>
 			</View>
     );
   }
@@ -42,5 +51,11 @@ const styles = StyleSheet.create({
     padding: 10,
     borderColor: '#000',
     borderWidth: 1,
-  },
+  }
 });
+
+export default graphql(fetchEstablishment, {
+	options: props => ({
+		variables: { id: props.navigation.state.params.establishmentId }
+	})
+})(EstablishmentDetailScreen);
