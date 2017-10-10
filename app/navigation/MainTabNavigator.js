@@ -1,11 +1,12 @@
 import React from 'react';
 import { Platform } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
-import { TabNavigator, TabBarBottom, TabBarTop } from 'react-navigation';
+import { StackNavigator, TabNavigator, TabBarBottom, TabBarTop} from 'react-navigation';
 
 import Colors from '../constants/Colors';
 
 import EstablishmentListScreen from '../screens/EstablishmentListScreen';
+import EstablishmentDetailScreen from '../screens/EstablishmentDetailScreen';
 import AccountProfileScreen from '../screens/AccountProfileScreen';
 import AccountLocationsScreen from '../screens/AccountLocationsScreen';
 import AccountPaymentMethodsScreen from '../screens/AccountPaymentMethodsScreen';
@@ -13,10 +14,14 @@ import SearchScreen from '../screens/SearchScreen';
 import CartScreen from '../screens/CartScreen';
 import OrderScreen from '../screens/OrderScreen';
 
+
 export default TabNavigator(
   {
     Home: {
-      screen: EstablishmentListScreen,
+      screen: StackNavigator({
+        establishmentList: { screen: EstablishmentListScreen },
+        establishmentDetail: { screen: EstablishmentDetailScreen },
+      }, { headerMode: 'none' }),
     },
     Search: {
       screen: SearchScreen,

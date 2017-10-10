@@ -5,15 +5,16 @@ import {
   View,
 } from 'react-native';
 
-export default class EstablishDetailScreen extends React.Component {
+export default class EstablishmentDetailScreen extends React.Component {
   static navigationOptions = {
-		header: null
+		tabBarVisible: false
 	};
 	
   render() {
+		const { params } = this.props.navigation.state;
     return (
-      <View onPress={this.navigate} style={styles.container}>
-				<Text style={styles.button}>i'm detail screen</Text>
+      <View style={styles.container}>
+				<Text style={styles.button}>i'm detail screen {`${params.establishmentId}`}</Text>
       </View>
     );
   }

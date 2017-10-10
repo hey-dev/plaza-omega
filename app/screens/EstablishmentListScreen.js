@@ -11,6 +11,7 @@ import query from '../queries/fetchEstablishments';
 
 class EstablishmentListScreen extends Component {
   static navigationOptions = {
+		headerLeft: null,
 		title: 'mi ubicacion',
 		tabBarLabel: 'Establecimientos'
 	};
@@ -29,7 +30,9 @@ class EstablishmentListScreen extends Component {
 	};
 	
   render() {
-		if (this.props.data.loading) {
+		const { loading, establishments } = this.props.data;
+		const { navigate } = this.props.navigation;
+		if (loading) {
 			return <Text>loading...</Text>
 		}
 		console.log(this.props);
@@ -37,13 +40,14 @@ class EstablishmentListScreen extends Component {
     return (
       <List containerStyle={{ borderTopWidth: 0, borderBottomWidth: 0 }} >
 				<FlatList 
-					data={this.props.data.establishments}
+					data={establishments}
 					renderItem={({ item }) => (
 						<ListItem
 							title={item.name}
 							subtitle={'categories'}
 							avatar={{ uri: 'http://lorempixel.com/50/50/food' }}
-							containerStyle={{ borderBottomWidth: 0 }}							
+							containerStyle={{ borderBottomWidth: 0 }}
+							onPressRightIcon={() => navigate('establishmentDetail', { establishmentId: item.id })}				
 						/>
 					)}
 					keyExtractor={item => item.id}

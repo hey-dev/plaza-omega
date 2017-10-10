@@ -1,15 +1,20 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
+import { SearchBar } from 'react-native-elements';
 
 export default class SearchScreen extends React.Component {
   static navigationOptions = {
-    title: 'busquedas',
+    header: null    
   };
 
   render() {
     return (
       <View style={styles.container}>
-        <Text>search</Text>
+        <SearchBar
+          lightTheme 
+          clearIcon={{ name: 'clear' }}
+          placeholder='escribe'
+        />
       </View>
     );
   }
@@ -18,8 +23,6 @@ export default class SearchScreen extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
     backgroundColor: '#fff',
   },
   button: {
