@@ -1,10 +1,12 @@
 import React from 'react';
 import { graphql } from 'react-apollo';
-import { StyleSheet, Text, View, Image, FlatList, ScrollView } from 'react-native';
+import { StyleSheet, Text, View, Image, FlatList, ScrollView, Platform } from 'react-native';
 import { Constants } from 'expo';
+import { Ionicons } from '@expo/vector-icons';
 import { Card, List, ListItem } from 'react-native-elements';
 import fetchEstablishment from '../queries/fetchEstablishment';
 import Layout from '../constants/Layout';
+import Footer from '../components/Footer';
 
 class EstablishmentDetailScreen extends React.Component {
   static navigationOptions = {
@@ -37,6 +39,8 @@ class EstablishmentDetailScreen extends React.Component {
     const { params } = this.props.navigation.state;
     const { establishment } = this.props.data;
 
+    const iconName = Platform.OS === 'ios' ? `ios-cart${focused ? '' : '-outline'}` : 'md-cart';
+
     if (!establishment) {
       return <Text>loading...</Text>;
     }
@@ -68,7 +72,7 @@ class EstablishmentDetailScreen extends React.Component {
               ]}
               renderItem={({ item }) => (
                 <ListItem
-                  title={item.name}                  
+                  title={item.name}
                   avatar={{ uri: 'http://lorempixel.com/50/50/food' }}
                   containerStyle={{ borderBottomWidth: 0 }}
                   rightIcon={{ style: { display: 'none' } }}
@@ -78,8 +82,14 @@ class EstablishmentDetailScreen extends React.Component {
               ItemSeparatorComponent={this._renderSeparator}
             />
           </List>
-        </ScrollView>
-        <View style={{ height: 50, alignItems: 'flex-end', backgroundColor: '#212121' }} />
+        </ScrollView>        
+        <Footer>
+          <Ionicons
+            name={iconName}
+            size={28}
+            color={'#212121'}
+          />
+        </Footer>
       </View>
     );
   }
@@ -106,7 +116,7 @@ const styles = StyleSheet.create({
     padding: 10,
     borderColor: '#000',
     borderWidth: 1,
-  },
+  }
 });
 
 export default graphql(fetchEstablishment, {
