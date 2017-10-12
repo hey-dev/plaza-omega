@@ -49,8 +49,8 @@ export default TabNavigator(
         switch (routeName) {
           case 'Home':
             iconName = Platform.OS === 'ios'
-              ? `ios-home${focused ? '' : '-outline'}`
-              : 'md-home';
+              ? `ios-list${focused ? '' : '-outline'}`
+              : 'md-list';
             break;
           case 'Account':
             iconName = Platform.OS === 'ios'

@@ -73,22 +73,24 @@ class EstablishmentDetailScreen extends React.Component {
               renderItem={({ item }) => (
                 <ListItem
                   title={item.name}
-                  avatar={{ uri: 'http://lorempixel.com/50/50/food' }}
-                  containerStyle={{ borderBottomWidth: 0 }}
-                  rightIcon={{ style: { display: 'none' } }}
+                  titleStyle={{ fontSize: 14, marginLeft: 70 }}
+                  subtitle={'categories'}
+                  subtitleStyle={{ fontSize: 12, marginLeft: 70 }}
+                  avatar={{ uri: 'http://lorempixel.com/73/96/food' }}
+                  containerStyle={{ borderBottomWidth: 0, paddingBottom: 24 }}
+                  wrapperStyle={{ paddingBottom: 24 }}
+                  avatarContainerStyle={{ width: 96, height: 73 }}
+                  avatarStyle={{ width: 96, height: 75 }}
+                  rightIcon={{ style: { display: 'none' } }}       
                 />
               )}
               keyExtractor={item => item.id}
               ItemSeparatorComponent={this._renderSeparator}
             />
           </List>
-        </ScrollView>        
+        </ScrollView>
         <Footer>
-          <Ionicons
-            name={iconName}
-            size={28}
-            color={'#212121'}
-          />
+          <Ionicons name={iconName} size={28} color={'#212121'} />
         </Footer>
       </View>
     );
@@ -116,7 +118,7 @@ const styles = StyleSheet.create({
     padding: 10,
     borderColor: '#000',
     borderWidth: 1,
-  }
+  },
 });
 
 export default graphql(fetchEstablishment, {
