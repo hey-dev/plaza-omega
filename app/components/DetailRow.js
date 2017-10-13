@@ -92,7 +92,7 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
   },
   body: {
-    flex: 3,
+    flex: 4,
     paddingLeft: 8,
     flexDirection: 'column',
   },
