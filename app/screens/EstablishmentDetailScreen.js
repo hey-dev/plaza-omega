@@ -7,6 +7,7 @@ import { Card, List, ListItem } from 'react-native-elements';
 import fetchEstablishment from '../queries/fetchEstablishment';
 import Layout from '../constants/Layout';
 import Footer from '../components/Footer';
+import DetailRow from '../components/DetailRow';
 
 class EstablishmentDetailScreen extends React.Component {
   static navigationOptions = {
@@ -39,16 +40,16 @@ class EstablishmentDetailScreen extends React.Component {
     const { params } = this.props.navigation.state;
     const { establishment } = this.props.data;
 
-    const iconName = Platform.OS === 'ios' ? `ios-cart${focused ? '' : '-outline'}` : 'md-cart';
+    const iconName = Platform.OS === 'ios' ? 'ios-cart' : 'md-cart';
 
     if (!establishment) {
       return <Text>loading...</Text>;
     }
     return (
       <View style={{ flex: 1 }}>
-        <ScrollView>
+        <ScrollView style={{ flex: 1 }}>
           <Image
-            style={{ width: Layout.window.width, height: 150 }}
+            style={{ width: Layout.window.width, height: 170 }}
             source={{ uri: 'http://lorempixel.com/342/192/food/' }}
           />
           <Card containerStyle={styles.card}>
@@ -71,18 +72,7 @@ class EstablishmentDetailScreen extends React.Component {
                 { id: '7', name: 'Botella 1lt Antioqueño ' },
               ]}
               renderItem={({ item }) => (
-                <ListItem
-                  title={item.name}
-                  titleStyle={{ fontSize: 14, marginLeft: 70 }}
-                  subtitle={'categories'}
-                  subtitleStyle={{ fontSize: 12, marginLeft: 70 }}
-                  avatar={{ uri: 'http://lorempixel.com/73/96/food' }}
-                  containerStyle={{ borderBottomWidth: 0, paddingBottom: 24 }}
-                  wrapperStyle={{ paddingBottom: 24 }}
-                  avatarContainerStyle={{ width: 96, height: 73 }}
-                  avatarStyle={{ width: 96, height: 75 }}
-                  rightIcon={{ style: { display: 'none' } }}       
-                />
+               <DetailRow />
               )}
               keyExtractor={item => item.id}
               ItemSeparatorComponent={this._renderSeparator}
